@@ -1,0 +1,39 @@
+header {
+  background: white;
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd5cc;
+}
+
+header h1 {
+  margin: 0;
+  color: #8a573f;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #302b27;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #8a573f;
+}
+
+@media (max-width: 800px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

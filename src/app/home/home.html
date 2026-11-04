@@ -1,0 +1,96 @@
+<app-menu></app-menu>
+
+<main>
+
+  <section id="inicio" class="inicio">
+    <h2>Tudo para colocar suas ideias no papel.</h2>
+
+    <p>
+      Materiais de papelaria para estudar, trabalhar e criar.
+    </p>
+
+    <a class="botao" routerLink="/" fragment="produtos">
+      Ver produtos
+    </a>
+  </section>
+
+  <section id="produtos">
+
+    <h2>Produtos</h2>
+
+    <input
+      id="busca"
+      type="text"
+      placeholder="Buscar produto..."
+      [(ngModel)]="textoBusca">
+
+    <div class="filtros">
+
+      <button type="button" (click)="filtrar('Todos')">
+        Todos
+      </button>
+
+      <button type="button" (click)="filtrar('Escrita')">
+        Escrita
+      </button>
+
+      <button type="button" (click)="filtrar('Cadernos')">
+        Cadernos
+      </button>
+
+      <button type="button" (click)="filtrar('Mochilas')">
+        Mochilas
+      </button>
+
+    </div>
+
+    <div class="produtos">
+
+      @for (produto of produtosFiltrados; track produto.id) {
+
+        <div class="produto">
+
+          <div class="imagem">
+            {{ produto.imagem }}
+          </div>
+
+          <small>
+            {{ produto.categoria }}
+          </small>
+
+          <h3>
+            {{ produto.nome }}
+          </h3>
+
+          <p>
+            R$ {{ produto.preco.toFixed(2).replace('.', ',') }}
+          </p>
+
+          <button
+            type="button"
+            (click)="adicionarAoCarrinho(produto)">
+            Adicionar ao carrinho
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+  <section id="sobre" class="sobre">
+
+    <h2>Sobre a Papelê</h2>
+
+    <p>
+      Uma papelaria criada para facilitar a escolha
+      dos materiais do seu dia a dia.
+    </p>
+
+  </section>
+
+</main>
+
+<app-footer></app-footer>

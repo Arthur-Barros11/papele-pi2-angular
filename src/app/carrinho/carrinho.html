@@ -1,0 +1,178 @@
+<app-menu></app-menu>
+
+<main>
+
+  <section class="pagina">
+
+    <h2>Seu carrinho</h2>
+
+    @if (itens.length === 0) {
+
+      <div class="vazio">
+
+        <p>
+          Seu carrinho está vazio.
+        </p>
+
+        <a
+          class="botao"
+          routerLink="/"
+          fragment="produtos">
+
+          Ver produtos
+
+        </a>
+
+        <button
+          class="botao secundario"
+          type="button"
+          (click)="adicionarExemplos()">
+
+          Adicionar itens de exemplo
+
+        </button>
+
+      </div>
+
+    } @else {
+
+      <div class="layout">
+
+        <div class="itens">
+
+          @for (item of itens; track item.nome) {
+
+            <div class="item">
+
+              <div class="imagem">
+                {{ item.imagem }}
+              </div>
+
+              <div>
+
+                <h3>
+                  {{ item.nome }}
+                </h3>
+
+                <small>
+                  {{ item.categoria }}
+                </small>
+
+                <p>
+                  R$ {{ item.preco.toFixed(2).replace('.', ',') }}
+                </p>
+
+              </div>
+
+              <div class="quantidade">
+
+                <button
+                  type="button"
+                  (click)="alterarQuantidade(item.nome, -1)">
+
+                  −
+
+                </button>
+
+                <span>
+                  {{ item.quantidade }}
+                </span>
+
+                <button
+                  type="button"
+                  (click)="alterarQuantidade(item.nome, 1)">
+
+                  +
+
+                </button>
+
+              </div>
+
+              <div class="subtotal">
+
+                <strong>
+                  R$ {{
+                    (item.preco * item.quantidade)
+                      .toFixed(2)
+                      .replace('.', ',')
+                  }}
+                </strong>
+
+                <br>
+
+                <button
+                  type="button"
+                  class="remover"
+                  (click)="remover(item.nome)">
+
+                  Remover
+
+                </button>
+
+              </div>
+
+            </div>
+
+          }
+
+        </div>
+
+        <aside class="resumo">
+
+          <h3>
+            Resumo do pedido
+          </h3>
+
+          <p>
+            Itens:
+            <strong>
+              {{ quantidadeTotal() }}
+            </strong>
+          </p>
+
+          <p class="total">
+
+            Total:
+            <strong>
+              R$ {{ total().toFixed(2).replace('.', ',') }}
+            </strong>
+
+          </p>
+
+          <button
+            class="botao"
+            type="button"
+            (click)="finalizar()">
+
+            Finalizar pedido
+
+          </button>
+
+          <button
+            class="botao secundario"
+            type="button"
+            (click)="esvaziar()">
+
+            Esvaziar carrinho
+
+          </button>
+
+        </aside>
+
+      </div>
+
+    }
+
+    @if (mensagem) {
+
+      <p class="mensagem">
+        {{ mensagem }}
+      </p>
+
+    }
+
+  </section>
+
+</main>
+
+<app-footer></app-footer>
