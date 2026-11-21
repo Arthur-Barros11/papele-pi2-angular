@@ -20,20 +20,16 @@ export class ClienteService {
   }
 
   // GET: procura clientes pelo e-mail (para não cadastrar e-mail repetido)
+    // GET: procura clientes pelo e-mail (ignora maiúsculas e espaços)
   buscarPorEmail(email: string): Observable<Cliente[]> {
-    const params = new HttpParams().set('email', email);
+    const params = new HttpParams().set('email', email.trim().toLowerCase());
     return this.http.get<Cliente[]>(this.API, { params });
   }
 
-  // GET: login = procura cliente com o e-mail E a senha informados
+  // Login: busca pelo e-mail e confere a senha aqui no código
   login(email: string, senha: string): Observable<Cliente | null> {
-    const params = new HttpParams()
-      .set('email', email)
-      .set('senha', senha);
-
-    return this.http
-      .get<Cliente[]>(this.API, { params })
-      .pipe(map(lista => lista[0] ?? null));
+    return this.buscarPorEmail(email).pipe(
+      map(lista => lista.find(c => c.senha === senha) ?? null)
+    );
   }
-
 }

@@ -51,7 +51,7 @@ export class Clientes {
     const cliente: Cliente = {
 
       nome: this.nome,
-      email: this.email,
+      email: this.email.trim().toLowerCase(),
       senha: this.senha,
       cpf: this.cpf,
       telefone: this.telefone
