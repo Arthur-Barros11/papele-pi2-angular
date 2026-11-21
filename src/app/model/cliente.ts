@@ -5,4 +5,5 @@ export interface Cliente {
   senha: string;
   cpf: string;
   telefone: string;
+  perfil?: 'cliente' | 'admin';
 }

@@ -26,6 +26,11 @@ export class Clientes {
   cpf = '';
   telefone = '';
 
+  // cadastro de administrador
+  souAdmin = false;
+  codigoAdmin = '';
+  private readonly CODIGO_ADMIN = 'PAPELE-ADMIN';
+
   private service = inject(ClienteService);
   private router = inject(Router);
 
@@ -48,17 +53,26 @@ export class Clientes {
       return;
     }
 
+    // administrador precisa informar o código correto
+    if (this.souAdmin && this.codigoAdmin !== this.CODIGO_ADMIN) {
+
+      alert('Código de administrador inválido.');
+
+      return;
+    }
+
     const cliente: Cliente = {
 
       nome: this.nome,
       email: this.email.trim().toLowerCase(),
       senha: this.senha,
       cpf: this.cpf,
-      telefone: this.telefone
+      telefone: this.telefone,
+      perfil: this.souAdmin ? 'admin' : 'cliente'
 
     };
 
-    // verifica se o e-mail já existe
+    // 1) verifica se o e-mail já existe
     this.service.buscarPorEmail(this.email).subscribe({
 
       next: (existentes) => {
@@ -68,11 +82,15 @@ export class Clientes {
           return;
         }
 
-        // e-mail livre: inclui o cliente via API
+        // 2) e-mail livre: inclui o cliente via API
         this.service.incluir(cliente).subscribe({
 
           next: () => {
-            alert('Cliente cadastrado com sucesso!');
+            alert(
+              this.souAdmin
+                ? 'Administrador cadastrado com sucesso!'
+                : 'Cliente cadastrado com sucesso!'
+            );
             this.router.navigate(['/login']);
           },
 
