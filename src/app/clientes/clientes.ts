@@ -1,19 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Menu } from '../shared/menu/menu';
 import { Footer } from '../shared/footer/footer';
-
-interface Cliente {
-
-  nome: string;
-  email: string;
-  senha: string;
-  cpf: string;
-  telefone: string;
-
-}
+import { Cliente } from '../model/cliente';
+import { ClienteService } from '../services/cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -34,7 +26,8 @@ export class Clientes {
   cpf = '';
   telefone = '';
 
-  constructor(private router: Router) {}
+  private service = inject(ClienteService);
+  private router = inject(Router);
 
   cadastrar(evento: Event) {
 
@@ -65,30 +58,35 @@ export class Clientes {
 
     };
 
-    const listaClientes: Cliente[] = [];
+    // verifica se o e-mail já existe
+    this.service.buscarPorEmail(this.email).subscribe({
 
-    listaClientes.push(cliente);
+      next: (existentes) => {
 
-    localStorage.setItem(
-      'email',
-      this.email
-    );
+        if (existentes.length > 0) {
+          alert('Este e-mail já está cadastrado.');
+          return;
+        }
 
-    localStorage.setItem(
-      'senha',
-      this.senha
-    );
+        // e-mail livre: inclui o cliente via API
+        this.service.incluir(cliente).subscribe({
 
-    localStorage.setItem(
-      'cliente',
-      JSON.stringify(listaClientes)
-    );
+          next: () => {
+            alert('Cliente cadastrado com sucesso!');
+            this.router.navigate(['/login']);
+          },
 
-    alert(
-      'Cliente cadastrado com sucesso!'
-    );
+          error: () => alert('Erro ao cadastrar o cliente.')
 
-    this.router.navigate(['/login']);
+        });
+
+      },
+
+      error: () => alert(
+        'Erro ao conectar com a API. Verifique se ela está rodando.'
+      )
+
+    });
 
   }
 
