@@ -26,7 +26,7 @@ export class Login {
   private service = inject(ClienteService);
   private router = inject(Router);
 
-  entrar(evento: Event) {
+    entrar(evento: Event) {
 
     evento.preventDefault();
 
@@ -42,13 +42,19 @@ export class Login {
             JSON.stringify({
               id: cliente.id,
               nome: cliente.nome,
-              email: cliente.email
+              email: cliente.email,
+              perfil: cliente.perfil ?? 'cliente'
             })
           );
 
           alert('Login realizado com sucesso');
 
-          this.router.navigate(['/']);
+          // administrador vai direto para a manutenção de produtos
+          if (cliente.perfil === 'admin') {
+            this.router.navigate(['/produtos']);
+          } else {
+            this.router.navigate(['/']);
+          }
 
         } else {
 
