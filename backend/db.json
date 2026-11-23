@@ -79,6 +79,108 @@
       "data": "2026-11-23T17:06:18.049Z",
       "status": "pendente",
       "id": "2-iD2AmGTf0"
+    },
+    {
+      "clienteId": "1",
+      "clienteNome": "Cliente Teste",
+      "itens": [
+        {
+          "id": 1,
+          "nome": "Caneta",
+          "categoria": "Escrita",
+          "preco": 4.9,
+          "imagem": "🖊️",
+          "quantidade": 1
+        },
+        {
+          "id": 2,
+          "nome": "Caderno",
+          "categoria": "Cadernos",
+          "preco": 24.9,
+          "imagem": "📓",
+          "quantidade": 1
+        },
+        {
+          "id": 3,
+          "nome": "Mochila",
+          "categoria": "Mochilas",
+          "preco": 89.9,
+          "imagem": "🎒",
+          "quantidade": 1
+        }
+      ],
+      "total": 119.7,
+      "data": "2026-11-23T17:31:37.617Z",
+      "status": "pendente",
+      "id": "rRuCU2pXNdI"
+    },
+    {
+      "clienteId": "1",
+      "clienteNome": "Cliente Teste",
+      "itens": [
+        {
+          "id": 1,
+          "nome": "Caneta",
+          "categoria": "Escrita",
+          "preco": 4.9,
+          "imagem": "🖊️",
+          "quantidade": 1
+        },
+        {
+          "id": 2,
+          "nome": "Caderno",
+          "categoria": "Cadernos",
+          "preco": 24.9,
+          "imagem": "📓",
+          "quantidade": 1
+        },
+        {
+          "id": 3,
+          "nome": "Mochila",
+          "categoria": "Mochilas",
+          "preco": 89.9,
+          "imagem": "🎒",
+          "quantidade": 1
+        }
+      ],
+      "total": 119.7,
+      "data": "2026-11-23T17:31:44.146Z",
+      "status": "pendente",
+      "id": "pftKBJgBUDw"
+    },
+    {
+      "clienteId": "1",
+      "clienteNome": "Cliente Teste",
+      "itens": [
+        {
+          "id": 1,
+          "nome": "Caneta",
+          "categoria": "Escrita",
+          "preco": 4.9,
+          "imagem": "🖊️",
+          "quantidade": 1
+        },
+        {
+          "id": 2,
+          "nome": "Caderno",
+          "categoria": "Cadernos",
+          "preco": 24.9,
+          "imagem": "📓",
+          "quantidade": 1
+        },
+        {
+          "id": 3,
+          "nome": "Mochila",
+          "categoria": "Mochilas",
+          "preco": 89.9,
+          "imagem": "🎒",
+          "quantidade": 1
+        }
+      ],
+      "total": 119.7,
+      "data": "2026-11-23T17:42:50.063Z",
+      "status": "pendente",
+      "id": "aHMYWeSaabA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

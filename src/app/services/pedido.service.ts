@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, map} from 'rxjs';
 import {Pedido}     from '../carrinho/pedido';
+
+
 @Injectable({
     providedIn: 'root'
 })
@@ -16,11 +18,15 @@ export class PedidoService {
             return this.http.get<Pedido[]>(this.API);
         }
     //já esse filtra todos os pedidos feitos por id do cliente
-        buscarPedidosPorCliente(clienteId : string): Observable<Pedido[]>{
-            return this.http.get<Pedido[]>(this.API,{
-                params: {clienteId: clienteId}
-            });
-        }
+        buscarPedidosPorCliente(clienteId: string): Observable<Pedido[]> {
+          return this.http.get<Pedido[]>(this.API).pipe(
+            map(pedidos =>
+              pedidos.filter(pedido =>
+               String(pedido.clienteId) === String(clienteId)
+      )
+    )
+  );
+}
 
     
     private readonly API = 'http://localhost:3000/pedidos';
