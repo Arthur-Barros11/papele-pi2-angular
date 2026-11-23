@@ -1,19 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Menu } from '../shared/menu/menu';
 import { Footer } from '../shared/footer/footer';
-
-interface Cliente {
-
-  nome: string;
-  email: string;
-  senha: string;
-  cpf: string;
-  telefone: string;
-
-}
+import { Cliente } from '../model/cliente';
+import { ClienteService } from '../services/cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -34,7 +26,13 @@ export class Clientes {
   cpf = '';
   telefone = '';
 
-  constructor(private router: Router) {}
+  // cadastro de administrador
+  souAdmin = false;
+  codigoAdmin = '';
+  private readonly CODIGO_ADMIN = 'PAPELE-ADMIN';
+
+  private service = inject(ClienteService);
+  private router = inject(Router);
 
   cadastrar(evento: Event) {
 
@@ -55,40 +53,58 @@ export class Clientes {
       return;
     }
 
+    // administrador precisa informar o código correto
+    if (this.souAdmin && this.codigoAdmin !== this.CODIGO_ADMIN) {
+
+      alert('Código de administrador inválido.');
+
+      return;
+    }
+
     const cliente: Cliente = {
 
       nome: this.nome,
-      email: this.email,
+      email: this.email.trim().toLowerCase(),
       senha: this.senha,
       cpf: this.cpf,
-      telefone: this.telefone
+      telefone: this.telefone,
+      perfil: this.souAdmin ? 'admin' : 'cliente'
 
     };
 
-    const listaClientes: Cliente[] = [];
+    // 1) verifica se o e-mail já existe
+    this.service.buscarPorEmail(this.email).subscribe({
 
-    listaClientes.push(cliente);
+      next: (existentes) => {
 
-    localStorage.setItem(
-      'email',
-      this.email
-    );
+        if (existentes.length > 0) {
+          alert('Este e-mail já está cadastrado.');
+          return;
+        }
 
-    localStorage.setItem(
-      'senha',
-      this.senha
-    );
+        // 2) e-mail livre: inclui o cliente via API
+        this.service.incluir(cliente).subscribe({
 
-    localStorage.setItem(
-      'cliente',
-      JSON.stringify(listaClientes)
-    );
+          next: () => {
+            alert(
+              this.souAdmin
+                ? 'Administrador cadastrado com sucesso!'
+                : 'Cliente cadastrado com sucesso!'
+            );
+            this.router.navigate(['/login']);
+          },
 
-    alert(
-      'Cliente cadastrado com sucesso!'
-    );
+          error: () => alert('Erro ao cadastrar o cliente.')
 
-    this.router.navigate(['/login']);
+        });
+
+      },
+
+      error: () => alert(
+        'Erro ao conectar com a API. Verifique se ela está rodando.'
+      )
+
+    });
 
   }
 

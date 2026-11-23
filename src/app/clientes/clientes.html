@@ -57,6 +57,32 @@
         id="telefone"
         [(ngModel)]="telefone"
         name="telefone">
+              <label for="admin" class="opcao-admin">
+
+        <input
+          type="checkbox"
+          id="admin"
+          [(ngModel)]="souAdmin"
+          name="admin">
+
+        Cadastrar como administrador
+
+      </label>
+
+      @if (souAdmin) {
+
+        <label for="codigoAdmin">
+          Código de administrador:
+        </label>
+
+        <input
+          type="password"
+          id="codigoAdmin"
+          [(ngModel)]="codigoAdmin"
+          name="codigoAdmin"
+          autocomplete="off">
+
+      }
 
       <button type="submit">
         Cadastrar

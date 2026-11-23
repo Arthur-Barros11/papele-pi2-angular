@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
+import { adminGuard } from './login/admin.guard';
 
 import { Home } from './home/home';
 import { Login } from './login/login';
 import { Clientes } from './clientes/clientes';
 import { Produtos } from './produtos/produtos';
 import { Carrinho } from './carrinho/carrinho';
+
 
 export const routes: Routes = [
 
@@ -23,9 +25,10 @@ export const routes: Routes = [
     component: Clientes
   },
 
-  {
+   {
     path: 'produtos',
-    component: Produtos
+    component: Produtos,
+    canActivate: [adminGuard]
   },
 
   {
