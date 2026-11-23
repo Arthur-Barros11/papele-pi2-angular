@@ -1,12 +1,26 @@
+
 <header>
   <h1>Papelê</h1>
 
   <nav>
     <a routerLink="/">Início</a>
     <a routerLink="/" fragment="produtos">Produtos</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/clientes">Cadastro</a>
-    <a routerLink="/produtos">Manutenção</a>
+
+    <a routerLink="/login" *ngIf="!usuarioLogado">Login</a>
+    <a routerLink="/clientes" *ngIf="!usuarioLogado">Cadastro</a>
+
+    <a routerLink="/meus-pedidos" *ngIf="usuarioLogado">Meus Pedidos</a>
+
+    <a routerLink="/produtos" *ngIf="usuarioLogado?.perfil === 'admin'">Manutenção</a>
+
     <a routerLink="/carrinho">Carrinho</a>
+
+    <span *ngIf="usuarioLogado">
+      Olá, {{ usuarioLogado.nome }}!
+    </span>
+
+    <a href="#" *ngIf="usuarioLogado" (click)="sair(); $event.preventDefault()">
+      Sair da conta
+    </a>
   </nav>
 </header>
