@@ -1,155 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap');
+
+/* =====================================================
+   PAPELÊ — estilo global
+   Ideia: caderno de verdade. Folha pautada no topo,
+   caneta azul, marca-texto amarelo. O resto fica quieto.
+   As variáveis abaixo valem para todos os componentes.
+   ===================================================== */
+
+:root {
+  --papel: #fffdf8;
+  --fundo: #f6f3ec;
+  --branco: #ffffff;
+  --tinta: #1e2a4a;
+  --tinta-suave: #5a647e;
+  --caneta: #2c4ba8;
+  --linha: #e3ded2;
+  --pauta: rgba(44, 75, 168, 0.14);
+  --margem: #e8827b;
+  --marca: #ffe45c;
+  --erro: #b3261e;
+  --erro-fundo: #fbe9e7;
+  --erro-borda: #e8b4ae;
+  --ok-fundo: #e2f2e6;
+  --ok-borda: #a9d3b3;
+  --ok-texto: #1f5130;
+
+  --fonte-titulo: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --fonte-texto: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+
+  --raio: 12px;
+  --lateral: clamp(20px, 8%, 140px);
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f7f3ed;
-  color: #302b27;
+  font-family: var(--fonte-texto);
+  font-size: 16px;
+  line-height: 1.55;
+  background: var(--fundo);
+  color: var(--tinta);
+  -webkit-font-smoothing: antialiased;
 }
 
-header {
-  background: white;
-  padding: 20px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ddd5cc;
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-header h1 {
-  margin: 0;
-  color: #8a573f;
+button,
+input,
+select {
+  font-family: var(--fonte-texto);
 }
 
-nav {
-  display: flex;
-  gap: 20px;
+a {
+  color: var(--caneta);
 }
 
-nav a {
-  color: #302b27;
-  text-decoration: none;
+:focus-visible {
+  outline: 3px solid var(--caneta);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
-nav a:hover {
-  color: #8a573f;
-}
+/* ---------- Seções ---------- */
 
 main section {
-  padding: 70px 8%;
+  padding: 80px var(--lateral);
 }
 
-.inicio {
-  min-height: 420px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: #eee3d6;
-}
-
-.inicio h2 {
-  max-width: 600px;
-  font-size: 42px;
-  margin: 0 0 15px;
-}
-
-.inicio p {
-  color: #665f58;
-  margin-bottom: 25px;
-}
-
-.botao,
-.produto button {
-  display: inline-block;
-  width: fit-content;
-  border: 0;
-  background: #302b27;
-  color: white;
-  padding: 11px 17px;
-  border-radius: 6px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-#busca {
-  width: 100%;
-  max-width: 400px;
-  padding: 12px;
-  border: 1px solid #d5ccc2;
-  border-radius: 6px;
-  margin: 10px 0;
-}
-
-.filtros {
-  margin: 10px 0 25px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.filtros button {
-  padding: 9px 14px;
-  border: 1px solid #d5ccc2;
-  background: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.produtos {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.produto {
-  background: white;
-  border: 1px solid #ddd5cc;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.produto .imagem {
-  height: 130px;
-  display: grid;
-  place-items: center;
-  background: #eee3d6;
-  font-size: 48px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-}
-
-.produto h3 {
-  margin: 5px 0;
-}
-
-.produto p {
-  color: #706860;
-}
-
-.sobre {
-  background: white;
-}
-
-footer {
-  padding: 25px 8%;
-  background: #302b27;
-  color: white;
+main section > h2 {
+  margin: 0 0 24px;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .pagina {
   min-height: 70vh;
 }
 
-@media (max-width: 800px) {
-  header {
-    flex-direction: column;
-    gap: 15px;
-  }
+/* ---------- Botões ---------- */
 
+.botao,
+.produto button {
+  display: inline-block;
+  width: fit-content;
+  border: 2px solid var(--tinta);
+  background: var(--tinta);
+  color: white;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.botao:hover,
+.produto button:hover {
+  background: var(--marca);
+  color: var(--tinta);
+}
+
+.botao:active,
+.produto button:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Busca e filtros da home ---------- */
+
+#produtos #busca {
+  width: 100%;
+  max-width: 420px;
+  padding: 13px 18px;
+  border: 1.5px solid var(--linha);
+  border-radius: 999px;
+  background: var(--branco);
+  font-size: 15px;
+  color: var(--tinta);
+  margin: 4px 0 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#produtos #busca::placeholder {
+  color: #99a0b2;
+}
+
+#produtos #busca:focus {
+  outline: none;
+  border-color: var(--caneta);
+  box-shadow: 0 0 0 4px rgba(44, 75, 168, 0.14);
+}
+
+.filtros {
+  margin: 0 0 32px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filtros button {
+  padding: 9px 18px;
+  border: 1.5px solid var(--linha);
+  background: var(--branco);
+  color: var(--tinta);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.filtros button:hover {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: white;
+}
+
+/* ---------- Cards de produto ---------- */
+
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.produto {
+  display: flex;
+  flex-direction: column;
+  background: var(--branco);
+  border: 1px solid var(--linha);
+  border-radius: 16px;
+  padding: 14px 14px 18px;
+  transition: border-color 0.2s ease;
+}
+
+.produto:hover {
+  border-color: var(--tinta);
+}
+
+.produto .imagem {
+  height: 160px;
+  display: grid;
+  place-items: center;
+  background: #fff0a8;
+  font-size: 64px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.produto:nth-child(4n + 2) .imagem { background: #d9e4ff; }
+.produto:nth-child(4n + 3) .imagem { background: #ffd9e2; }
+.produto:nth-child(4n + 4) .imagem { background: #d6efdf; }
+
+.produto small {
+  display: block;
+  margin: 0 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tinta-suave);
+}
+
+.produto h3 {
+  margin: 2px 4px 4px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.produto p {
+  margin: 0 4px 16px;
+  color: var(--caneta);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.produto button {
+  margin: auto 4px 0;
+  width: calc(100% - 8px);
+  text-align: center;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 1000px) {
   .produtos {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  main section {
+    padding: 56px var(--lateral);
   }
 }
 
@@ -157,14 +248,11 @@ footer {
   .produtos {
     grid-template-columns: 1fr;
   }
-
-  .inicio h2 {
-    font-size: 32px;
-  }
-
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

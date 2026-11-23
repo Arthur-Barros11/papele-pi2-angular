@@ -1,5 +1,10 @@
 footer {
-  padding: 25px 8%;
-  background: #302b27;
-  color: white;
+  padding: 28px var(--lateral);
+  background: var(--tinta);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+footer p {
+  margin: 0;
 }

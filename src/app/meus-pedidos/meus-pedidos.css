@@ -1,29 +1,43 @@
 .container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 40px auto;
   padding: 20px;
+  min-height: 60vh;
 }
 
 .container h1 {
-  margin-bottom: 30px;
+  margin: 0 0 28px;
+  font-size: 34px;
+  font-weight: 800;
 }
 
+/* cada pedido é uma folha com margem vermelha */
 .pedido {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
+  background: var(--branco);
+  border: 1px solid var(--linha);
+  border-left: 4px solid var(--margem);
+  border-radius: 12px;
+  padding: 22px 24px;
   margin-bottom: 20px;
 }
 
 .pedido h2 {
-  margin-bottom: 15px;
+  margin: 0 0 12px;
+  font-size: 22px;
 }
 
 .pedido p {
-  margin: 8px 0;
+  margin: 6px 0;
+  color: var(--tinta-suave);
 }
 
 .pedido h3 {
-  margin-top: 15px;
+  margin: 16px 0 6px;
+  font-size: 17px;
+}
+
+.pedido h3:last-child {
+  padding-top: 14px;
+  border-top: 1px solid var(--linha);
+  color: var(--caneta);
 }

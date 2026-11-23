@@ -1,22 +1,67 @@
+/* Hero: folha de caderno pautada */
 .inicio {
-  min-height: 420px;
+  position: relative;
+  min-height: 460px;
+  padding: 96px var(--lateral);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #eee3d6;
+  background-color: var(--papel);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    var(--pauta) 31px,
+    var(--pauta) 32px
+  );
+  border-bottom: 1px solid var(--linha);
+  overflow: hidden;
+}
+
+/* linha vermelha da margem */
+.inicio::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--lateral) - 28px);
+  width: 2px;
+  background: var(--margem);
+  opacity: 0.55;
 }
 
 .inicio h2 {
-  max-width: 600px;
-  font-size: 42px;
-  margin: 0 0 15px;
+  max-width: 640px;
+  margin: 0 0 16px;
+  font-size: clamp(36px, 5.2vw, 64px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--tinta);
 }
 
 .inicio p {
-  color: #665f58;
-  margin-bottom: 25px;
+  max-width: 460px;
+  margin: 0 0 28px;
+  font-size: 18px;
+  color: var(--tinta-suave);
 }
 
 .sobre {
-  background: white;
+  background: var(--branco);
+  border-top: 1px solid var(--linha);
+}
+
+.sobre p {
+  max-width: 60ch;
+  font-size: 18px;
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+@media (max-width: 500px) {
+  .inicio {
+    min-height: 380px;
+    padding: 64px var(--lateral);
+  }
 }

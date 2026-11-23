@@ -1,39 +1,64 @@
 header {
-  background: white;
-  padding: 20px 8%;
+  background: var(--papel);
+  padding: 16px var(--lateral);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ddd5cc;
+  gap: 16px;
+  border-bottom: 1px solid var(--linha);
 }
 
+/* logo com faixa de marca-texto */
 header h1 {
   margin: 0;
-  color: #8a573f;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--tinta);
+  background: linear-gradient(transparent 62%, var(--marca) 62% 92%, transparent 92%);
+  padding: 0 4px;
 }
 
 nav {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 nav a {
-  color: #302b27;
+  color: var(--tinta);
   text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background-image: linear-gradient(var(--marca), var(--marca));
+  background-repeat: no-repeat;
+  background-position: 12px 85%;
+  background-size: 0% 42%;
+  transition: background-size 0.25s ease;
 }
 
 nav a:hover {
-  color: #8a573f;
+  color: var(--tinta);
+  background-size: calc(100% - 24px) 42%;
+}
+
+/* "Olá, nome!" */
+nav span {
+  font-size: 15px;
+  color: var(--tinta-suave);
+  padding: 6px 12px;
 }
 
 @media (max-width: 800px) {
   header {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
 
   nav {
-    flex-wrap: wrap;
     justify-content: center;
   }
 }
