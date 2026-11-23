@@ -1,0 +1,29 @@
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.container h1 {
+  margin-bottom: 30px;
+}
+
+.pedido {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.pedido h2 {
+  margin-bottom: 15px;
+}
+
+.pedido p {
+  margin: 8px 0;
+}
+
+.pedido h3 {
+  margin-top: 15px;
+}

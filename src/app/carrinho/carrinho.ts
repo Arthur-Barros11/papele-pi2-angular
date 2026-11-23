@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, Router } from '@angular/router';
+import {PedidoService} from '../services/pedido.service';
 
 import { Menu } from '../shared/menu/menu';
 import { Footer } from '../shared/footer/footer';
@@ -27,6 +28,10 @@ interface ItemCarrinho {
   styleUrl: './carrinho.css'
 })
 export class Carrinho {
+  private pedidoService = inject(PedidoService);
+  private router = inject(Router);
+
+  usuarioLogado: any = null;
 
   itens: ItemCarrinho[] = [];
 
@@ -48,6 +53,16 @@ export class Carrinho {
         ? JSON.parse(salvo)
         : [];
 
+  }
+
+  verificarLogin() : boolean {
+    const usuario = localStorage.getItem('usuarioLogado');
+
+    if(!usuario){
+      return false;
+    }
+    this.usuarioLogado = JSON.parse(usuario);
+    return true;
   }
 
   salvar() {
@@ -180,17 +195,35 @@ export class Carrinho {
 
   finalizar() {
 
-    const total = this.total();
+    if (!this.verificarLogin()) {
+    alert('Você precisa fazer login para finalizar o pedido.');
+    this.router.navigate(['/login']);
+    return;
+  }
 
-    const quantidade =
-      this.quantidadeTotal();
+  const pedido = {
+    clienteId: String (this.usuarioLogado.id),
+    clienteNome: this.usuarioLogado.nome,
+    itens: [...this.itens],
+    total: this.total(),
+    data: new Date().toISOString(),
+    status: 'pendente'
+  };
 
-    this.esvaziar();
+  this.pedidoService.registrarPedido(pedido).subscribe({
+    next: (resposta) => {
+      alert('pedido realizado com sucesso!');
+      
+      this.esvaziar();
 
-    this.mensagem =
-      `Pedido finalizado! ${quantidade} item(ns), total de R$ ${total
-        .toFixed(2)
-        .replace('.', ',')}. Obrigado pela compra.`;
+      this.mensagem = 'Obrigado pela compra!!';
+
+    },
+
+    error: () => {
+      alert('erro ao registrar o pedido. Tente novamente.');
+    }
+  })
 
   }
 
