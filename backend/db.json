@@ -1,0 +1,10 @@
+{
+  "produtos": [
+    { "id": "1", "nome": "Caneta", "categoria": "Escrita", "preco": 4.9, "imagem": "🖊️" },
+    { "id": "2", "nome": "Caderno", "categoria": "Cadernos", "preco": 24.9, "imagem": "📓" },
+    { "id": "3", "nome": "Mochila", "categoria": "Mochilas", "preco": 89.9, "imagem": "🎒" },
+    { "id": "4", "nome": "Marca-texto", "categoria": "Escrita", "preco": 12.9, "imagem": "🖍️" },
+    { "id": "5", "nome": "Caderno Pontilhado", "categoria": "Cadernos", "preco": 29.9, "imagem": "📔" },
+    { "id": "6", "nome": "Mochila Escolar", "categoria": "Mochilas", "preco": 99.9, "imagem": "🎒" }
+  ]
+}
