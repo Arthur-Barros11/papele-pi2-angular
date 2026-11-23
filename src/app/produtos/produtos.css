@@ -86,7 +86,6 @@
 }
 
 .mensagem {
-  display: none;
   margin: 15px 0 0;
   padding: 12px 15px;
   background: #e4efe2;
@@ -95,8 +94,10 @@
   color: #24502a;
 }
 
-.mensagem.visivel {
-  display: block;
+.mensagem.falha {
+  background: #fbe9e7;
+  border-color: #e8b4ae;
+  color: #b3261e;
 }
 
 .topo-lista {
