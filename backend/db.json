@@ -9,6 +9,77 @@
       "telefone": "11999999999"
     }
   ],
-  "pedidos":[
-  ]
+  "pedidos": [
+    {
+      "clienteId": "xjq_W5TDiBI",
+      "clienteNome": "lari",
+      "itens": [
+        {
+          "id": 1,
+          "nome": "Caneta",
+          "categoria": "Escrita",
+          "preco": 4.9,
+          "imagem": "🖊️",
+          "quantidade": 1
+        }
+      ],
+      "total": 4.9,
+      "data": "2026-11-23T17:04:12.206Z",
+      "status": "pendente",
+      "id": "i7DsfrS-P2M"
+    },
+    {
+      "clienteId": "xjq_W5TDiBI",
+      "clienteNome": "lari",
+      "itens": [
+        {
+          "id": 1,
+          "nome": "Caneta",
+          "categoria": "Escrita",
+          "preco": 4.9,
+          "imagem": "🖊️",
+          "quantidade": 1
+        },
+        {
+          "id": 2,
+          "nome": "Caderno",
+          "categoria": "Cadernos",
+          "preco": 24.9,
+          "imagem": "📓",
+          "quantidade": 1
+        },
+        {
+          "id": 3,
+          "nome": "Mochila",
+          "categoria": "Mochilas",
+          "preco": 89.9,
+          "imagem": "🎒",
+          "quantidade": 1
+        }
+      ],
+      "total": 119.7,
+      "data": "2026-11-23T17:05:40.853Z",
+      "status": "pendente",
+      "id": "kBYeVckd8FY"
+    },
+    {
+      "clienteId": "xjq_W5TDiBI",
+      "clienteNome": "lari",
+      "itens": [
+        {
+          "id": 2,
+          "nome": "Caderno",
+          "categoria": "Cadernos",
+          "preco": 24.9,
+          "imagem": "📓",
+          "quantidade": 1
+        }
+      ],
+      "total": 24.9,
+      "data": "2026-11-23T17:06:18.049Z",
+      "status": "pendente",
+      "id": "2-iD2AmGTf0"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
