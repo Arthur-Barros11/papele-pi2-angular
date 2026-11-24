@@ -74,33 +74,7 @@ export class Carrinho {
 
   }
 
-  adicionarExemplos() {
 
-    this.adicionar({
-      id: 1,
-      nome: 'Caneta',
-      categoria: 'Escrita',
-      preco: 4.90,
-      imagem: '🖊️'
-    });
-
-    this.adicionar({
-      id: 2,
-      nome: 'Caderno',
-      categoria: 'Cadernos',
-      preco: 24.90,
-      imagem: '📓'
-    });
-
-    this.adicionar({
-      id: 3,
-      nome: 'Mochila',
-      categoria: 'Mochilas',
-      preco: 89.90,
-      imagem: '🎒'
-    });
-
-  }
 
   adicionar(produto: any) {
 
