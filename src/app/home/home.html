@@ -51,7 +51,11 @@
         <div class="produto">
 
           <div class="imagem">
-            {{ produto.imagem }}
+            @if (produto.imagem?.startsWith('data:image/')) {
+              <img [src]="produto.imagem" [alt]="produto.nome">
+            } @else {
+              {{ produto.imagem }}
+            }
           </div>
 
           <small>
